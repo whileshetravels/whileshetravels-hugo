@@ -1,4 +1,30 @@
-baseURL = "http://example.org/"
-languageCode = "en-us"
-title = "My New Hugo Site"
-theme = "ananke"
+baseURL 	= "https://whileshetravels.github.io/"
+theme           = "hyde-hyde"
+languageCode    = "en-us"
+title           = "WST"
+description     = "whileshetravels"
+googleAnalytics = "UA-88444522-1"
+copyright 	= ""
+disqusShortname = "whileshetravels"
+publishdir 	= "whileshetravels.github.io"
+
+[Author]
+	name = "Author Name"
+
+[params]
+	themeColor 	= "theme-base-08"
+	description     = "whileshetravels"
+
+[[menu.main]]
+	name = "about hugo"
+	pre = "<i class='fa fa-heart'></i>"
+	weight = -110
+	identifier = "about"
+	url = "/about/"
+
+[taxonomies]
+tag = "tags"
+category = "categories"
+series = "series"
+country = "countries"
+city = "cities"

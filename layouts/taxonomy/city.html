@@ -1,0 +1,27 @@
+{{ partial "head.html" . }}
+<body class="{{ .Site.Params.themeColor }} {{if .Site.Params.layoutReverse}}layout-reverse{{end}}">
+
+{{ partial "sidebar.html" . }}
+
+  <div class="content container">
+    <ul class="posts">
+        {{ range .Data.Pages }}
+				<article>
+					<div class="summary">
+						<h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+						<div style="float: left">
+							<img src="{{ .Params.Thumbnail }}" />
+						</div>
+						{{ .Summary }}
+					</div>
+					{{ if .Truncated }}
+					<div class="read-more-link">
+						<a href="{{ .RelPermalink }}">Read More…</a>
+					</div>
+					{{ end }}
+				</article>
+        {{ end }}
+    </ul>
+  </div>
+</body>
+</html>

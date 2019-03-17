@@ -1,0 +1,65 @@
+	{{ partial "head.html" . }}
+	<body class="{{ .Site.Params.themeColor }} {{if .Site.Params.layoutReverse}}layout-reverse{{end}}">
+		{{ partial "sidebar.html" . }}
+
+		<div class="content container">
+			<div class="post">
+			 	<h1>{{ .Title }}</h1>
+				<h1>{{ .Description }}</h1>
+			  <span class="post-date">{{ dateFormat "Mon, Jan 2, 2006" .Date }}</span>
+			      {{ .Content }}
+			</div>
+
+			{{ if and (isset .Site.Params "disqusShortname") (ne .Site.Params.disqusShortname "") }}
+				<h2>Comments</h2>
+				{{ partial "disqus" . }}
+			{{ end }}
+
+			<script data-isso="//subdomain.whileshetravels.com"
+			        src="//subdomain.whileshetravels.com/js/embed.min.js"></script>
+
+			<section id="isso-thread"></section>
+
+			{{ template "_internal/disqus.html" . }}
+
+			<h2>Related posts</h2>
+
+			<ul id="cities" >
+				{{ range $city := .Params.cities }}
+					{{ range $key, $taxonomy := $.Site.Taxonomies.cities }}
+						{{ if eq $key $city}}
+							<ul class="sidebar-nav">
+								{{ range $taxonomy.Pages }}
+									{{ if ne .Title $.Params.Title }}
+										<li hugo-nav="{{ .RelPermalink}}">
+											<a href="{{ .Permalink}}"> {{ .LinkTitle }} </a>
+										</li>
+									{{ end }}
+								{{ end }}
+							</ul>
+						{{ end }}
+					{{ end }}
+				{{ end }}
+			</ul>
+
+<!--
+			<section id="menu">
+			<ul class="sidebar-nav">
+					{{ range $key, $taxonomy := .Site.Taxonomies.cities }}
+					<a href="{{ "/cities/" | relLangURL }}{{ $key | urlize }}"> {{ humanize $key }} </a></li>
+					{{ if eq $key "paris"}}
+					<ul>
+						{{ range $taxonomy.Pages }}
+						<li hugo-nav="{{ .RelPermalink}}"><a href="{{ .Permalink}}"> XX{{ .LinkTitle }} </a> </li>
+						{{ end }}
+					</ul>
+					{{ end }}
+					{{ end }}
+			</ul>
+		</section>
+	-->
+
+		</div>
+
+  </body>
+</html>
